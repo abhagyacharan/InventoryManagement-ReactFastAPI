@@ -3,6 +3,20 @@ from tortoise.contrib.fastapi import register_tortoise
 from models import (supplier_pydantic, supplier_pydanticIn, Supplier)
 from models import (product_pydantic, product_pydanticIn, Product)
 
+#email
+from fastapi import FastAPI, BackgroundTasks, UploadFile, File, Form
+from starlette.responses import JSONResponse
+from starlette.requests import Request
+from fastapi_mail import FastMail, MessageSchema, ConnectionConfig, MessageType
+from pydantic import BaseModel, EmailStr
+from typing import List
+
+#dotenv
+from dotenv import dotenv_values
+
+#credentials
+credentials = dotenv_values(".env")
+
 app = FastAPI()
 
 @app.get("/")
@@ -81,6 +95,51 @@ async def update_product(id: int, update_info: product_pydanticIn):
 @app.delete('/product/{id}')
 async def delete_product(id: int):
     await Product.filter(id = id).delete()
+    return {"status" : "ok"}
+
+
+
+class EmailSchema(BaseModel):
+    email: List[EmailStr]
+
+class EmailContent(BaseModel):
+    message: str
+    subject: str
+
+conf = ConnectionConfig(
+    MAIL_USERNAME = credentials['EMAIL'],
+    MAIL_PASSWORD = credentials['PASSWORD'],
+    MAIL_FROM = credentials['EMAIL'],
+    MAIL_PORT = 465,
+    MAIL_SERVER = "smtp.gmail.com",
+    MAIL_STARTTLS = False,
+    MAIL_SSL_TLS = True,
+    USE_CREDENTIALS = True,
+    VALIDATE_CERTS = True
+)
+
+@app.post('/email/{product_id}')
+async def send_email(product_id: int, content: EmailContent):
+    product = await Product.get(id = product_id)
+    supplier = await product.supplied_by
+    supplier_email = [supplier.email]
+
+    html = f"""
+    <h5>Grog's Business LTD</h5> 
+    <br>
+    <p>{content.message}</p>
+    <br>
+    <h6>Thank You.</h6>
+    """
+
+    message = MessageSchema(
+    subject=content.subject,
+    recipients=supplier_email,
+    body=html,
+    subtype=MessageType.html)
+
+    fm = FastMail(conf)
+    await fm.send_message(message)
     return {"status" : "ok"}
 
 register_tortoise(
