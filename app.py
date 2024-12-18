@@ -9,7 +9,7 @@ from starlette.responses import JSONResponse
 from starlette.requests import Request
 from fastapi_mail import FastMail, MessageSchema, ConnectionConfig, MessageType
 from pydantic import BaseModel, EmailStr
-from typing import List
+from typing import ContextManager, List
 
 #dotenv
 from dotenv import dotenv_values
@@ -17,7 +17,24 @@ from dotenv import dotenv_values
 #credentials
 credentials = dotenv_values(".env")
 
+#adding CORs headers
+from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI()
+
+#adding cors urls
+origins = [
+    'https://localhost:3000'
+]
+
+#add middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins = origins,
+    allow_credentials = True,
+    allow_methods = ["*"],
+    allow_headers = ["*"]
+)
 
 @app.get("/")
 def hello():
