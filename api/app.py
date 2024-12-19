@@ -24,16 +24,17 @@ app = FastAPI()
 
 #adding cors urls
 origins = [
-    'https://localhost:5173'
+    "http://127.0.0.1:3000",  # Localhost for React
+    "http://localhost:3000",   # Adding this as well in case of different behavior on different systems
 ]
 
-#add middleware
+# Add CORS middleware to allow access from the specified origins
 app.add_middleware(
     CORSMiddleware,
-    allow_origins = origins,
-    allow_credentials = True,
-    allow_methods = ["*"],
-    allow_headers = ["*"]
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all HTTP methods
+    allow_headers=["*"],  # Allow all headers
 )
 
 @app.get("/")
@@ -87,8 +88,12 @@ async def add_product(supplier_id: int, product_details: product_pydanticIn):
 
 @app.get('/product')
 async def get_all_products():
-    response = await product_pydantic.from_queryset(Product.all())
-    return {"status" : "ok", "data" : response}
+    try:
+        response = await product_pydantic.from_queryset(Product.all())
+        return {"status": "ok", "data": response}
+    except Exception as e:
+        print(f"Error: {e}")
+        return {"status": "error", "message": str(e)}
 
 @app.get('/product/{id}')
 async def get_specific_product(id: int):
