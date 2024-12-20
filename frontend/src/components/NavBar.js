@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 import { ProductContext } from "../ProductContext";
 
 const NavBar = () => {
-
-    const [products, setProducts] = useContext(ProductContext)
+    const [products] = useContext(ProductContext);
 
     return (
         <Navbar bg="dark" expand="lg" variant="dark">
@@ -13,21 +12,21 @@ const NavBar = () => {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                    <Badge className="mt-2" variant="primary">Produts in Stock: {products.data.length}</Badge>
+                    <Badge className="mt-2" variant="primary">Products in Stock: {products.data.length}</Badge>
                 </Nav>
                 <Form className="d-flex justify-content-between align-items-center">
-                    {/* <Link to="/addsupplier" className="btn btn-primary btn-sm">Add Supplier</Link> */}
-                    <Link to="/addproduct" className="btn btn-primary btn-sm">Add Product</Link>
+                    <Link to="/addproduct" className="btn btn-primary btn-sm mx-1" style={{ width: '150px' }}>Add Product</Link>
+                    <Link to="/addsupplier" className="btn btn-primary btn-sm mx-1" style={{ width: '150px' }}>Add Supplier</Link>
                     <FormControl
                         type="text"
                         placeholder="Search"
-                        className="mx-3"
+                        className="mx-2"
                     />
                     <Button type="submit" variant="outline-primary">Search</Button>
                 </Form>
             </Navbar.Collapse>
         </Navbar>
     );
-}
+};
 
 export default NavBar;

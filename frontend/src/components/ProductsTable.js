@@ -9,80 +9,34 @@ const ProductsAndSuppliersTable = () => {
     const [products, setProducts] = useContext(ProductContext);
     const [suppliers, setSuppliers] = useContext(SupplierContext);
 
-    const handleDeleteProduct = (id) => {
-        fetch("http://127.0.0.1:8000/product/" + id, {
-            method: "DELETE",
-            headers: {
-                accept: 'application/json'
-            }
-        })
-            .then(resp => {
-                return resp.json()
-            })
-            .then(result => {
-                if (result.status === "ok") {
-                    const filteredProducts = products.data.filter((product) => product.id !== id);
-                    setProducts({ data: [...filteredProducts] })
-                    alert("Product deleted successfully.")
-                } else {
-                    alert("Product deletion failed.")
-                }
-            })
-    }
+    const fetchData = (url, setData) => {
+        fetch(url)
+            .then((resp) => resp.json())
+            .then((results) => setData({ data: [...results.data] }))
+            .catch((error) => console.error("Error fetching data:", error));
+    };
 
     useEffect(() => {
-        fetch("http://127.0.0.1:8000/product/")
-            .then((resp) => {
-                console.log("Response status:", resp.status);
-                return resp.json();
-            })
-            .then((results) => {
-                console.log("Fetched data:", results);
-                setProducts({ data: [...results.data] });
-            })
-            .catch((error) => {
-                console.error("Error fetching products:", error);
-            });
+        fetchData("http://127.0.0.1:8000/product/", setProducts);
+        fetchData("http://127.0.0.1:8000/supplier/", setSuppliers);
     }, []);
 
-    const handleDeleteSupplier = (id) => {
-        fetch("http://127.0.0.1:8000/supplier/" + id, {
-            method: "DELETE",
-            headers: {
-                accept: 'application/json'
-            }
-        })
-            .then(resp => {
-                return resp.json()
-            })
+    const handleDelete = (url, id, setData, data) => {
+        fetch(url + id, { method: "DELETE", headers: { accept: "application/json" } })
+            .then(resp => resp.json())
             .then(result => {
                 if (result.status === "ok") {
-                    const filteredSuppliers = suppliers.data.filter((supplier) => supplier.id !== id);
-                    setSuppliers({ data: [...filteredSuppliers] })
-                    alert("Supplier deleted successfully.")
-                } else {
-                    alert("Supplier deletion failed.")
-                }
-            })
-    }
-
-    useEffect(() => {
-        fetch("http://127.0.0.1:8000/supplier/")
-            .then((resp) => {
-                console.log("Response status:", resp.status);
-                return resp.json();
-            })
-            .then((results) => {
-                setSuppliers({ data: [...results.data] });
-            })
-            .catch((error) => {
-                console.log("Error:", error);
+                    const filteredData = data.filter((item) => item.id !== id);
+                    setData({ data: [...filteredData] });
+                    alert("Deleted successfully.");
+                } else alert("Deletion failed.");
             });
-    }, []);
+    };
 
     return (
         <>
             <div>
+                <h3 className="text-center mb-3" style={{ textDecoration: "underline" }}>Products</h3>
                 <Table striped bordered hover>
                     <thead>
                         <tr>
@@ -98,20 +52,19 @@ const ProductsAndSuppliersTable = () => {
                     <tbody>
                         {products.data.map((product) => (
                             <ProductsRow
-                                id={product.id}
-                                name={product.name}
-                                quantity_in_stock={product.quantity_in_stock}
-                                quantity_sold={product.quantity_sold}
-                                unit_price={product.unit_price}
-                                revenue={product.revenue}
-                                handleDelete={handleDeleteProduct}
+                                {...product}
+                                handleDelete={(id) => handleDelete("http://127.0.0.1:8000/product/", id, setProducts, products.data)}
                                 key={product.id}
                             />
                         ))}
                     </tbody>
                 </Table>
             </div>
+
+            <br />
+
             <div>
+                <h3 className="text-center mb-3" style={{ textDecoration: "underline" }}>Suppliers</h3>
                 <Table striped bordered hover>
                     <thead>
                         <tr>
@@ -126,12 +79,8 @@ const ProductsAndSuppliersTable = () => {
                     <tbody>
                         {suppliers.data.map((supplier) => (
                             <SuppliersRow
-                                id={supplier.id}
-                                name={supplier.name}
-                                company={supplier.company}
-                                email={supplier.email}
-                                phone={supplier.email}
-                                handleDelete={handleDeleteSupplier}
+                                {...supplier}
+                                handleDelete={(id) => handleDelete("http://127.0.0.1:8000/supplier/", id, setSuppliers, suppliers.data)}
                                 key={supplier.id}
                             />
                         ))}
