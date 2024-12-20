@@ -46,7 +46,7 @@ const ProductsAndSuppliersTable = () => {
                             <th>Quantity Sold</th>
                             <th>Unit Price</th>
                             <th>Revenue</th>
-                            <th>Actions</th>
+                            <th style={{ width: "250px" }}>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -61,7 +61,7 @@ const ProductsAndSuppliersTable = () => {
                 </Table>
             </div>
 
-            <br />
+            <hr style={{ height: "3px", backgroundColor: "#7a7a7a", border: "none" }}/>
 
             <div>
                 <h3 className="text-center mb-3" style={{ textDecoration: "underline" }}>Suppliers</h3>
@@ -73,7 +73,7 @@ const ProductsAndSuppliersTable = () => {
                             <th>Company</th>
                             <th>Email</th>
                             <th>Phone</th>
-                            <th>Actions</th>
+                            <th style={{ width: "250px" }}>Actions</th>
                         </tr>
                     </thead>
                     <tbody>

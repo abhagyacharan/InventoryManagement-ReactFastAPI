@@ -7,6 +7,7 @@ import ProductsTable from "./components/ProductsTable";
 import SuppliersTable from "./components/SuppliersTable";
 import ProductsAndSuppliersTable from "./components/ProductsTable";
 import AddProducts from "./components/AddProducts";
+import AddSuppliers from "./components/AddSuppliers";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
                 <Routes>
                   <Route exact path="/" Component={ProductsAndSuppliersTable} />
                   <Route exact path="/addproduct" Component={AddProducts} />
+                  <Route exact path="/addsupplier" Component={AddSuppliers} />
                 </Routes>
               </div>
             </div>
