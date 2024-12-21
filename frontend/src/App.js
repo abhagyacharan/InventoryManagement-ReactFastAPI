@@ -8,6 +8,10 @@ import SuppliersTable from "./components/SuppliersTable";
 import ProductsAndSuppliersTable from "./components/ProductsTable";
 import AddProducts from "./components/AddProducts";
 import AddSuppliers from "./components/AddSuppliers";
+import UpdateProduct from "./components/UpdateProduct";
+import { UpdateProductContextProvider } from "./UpdateProductContext";
+import { EmailContextProvider } from "./EmailContext";
+import EmailPage from "./components/EmailPage";
 
 function App() {
   return (
@@ -18,11 +22,17 @@ function App() {
             <NavBar />
             <div className="row">
               <div className="col-sm-10 col-xm-12 mr-auto ml-auto mt-4 mb-4">
-                <Routes>
-                  <Route exact path="/" Component={ProductsAndSuppliersTable} />
-                  <Route exact path="/addproduct" Component={AddProducts} />
-                  <Route exact path="/addsupplier" Component={AddSuppliers} />
-                </Routes>
+                <UpdateProductContextProvider>
+                  <EmailContextProvider>
+                    <Routes>
+                      <Route exact path="/" Component={ProductsAndSuppliersTable} />
+                      <Route exact path="/addproduct" Component={AddProducts} />
+                      <Route exact path="/addsupplier" Component={AddSuppliers} />
+                      <Route exact path="/updateproduct" Component={UpdateProduct} />
+                      <Route exact path="/email" Component={EmailPage} />
+                    </Routes>
+                  </EmailContextProvider>
+                </UpdateProductContextProvider>
               </div>
             </div>
           </SupplierProvider>

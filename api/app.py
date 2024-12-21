@@ -140,10 +140,9 @@ conf = ConnectionConfig(
     VALIDATE_CERTS = True
 )
 
-@app.post('/email/{product_id}')
-async def send_email(product_id: int, content: EmailContent):
-    product = await Product.get(id = product_id)
-    supplier = await product.supplied_by
+@app.post('/email/{supplier_id}')
+async def send_email(supplier_id: int, content: EmailContent):
+    supplier = await Supplier.get(id = supplier_id)
     supplier_email = [supplier.email]
 
     html = f"""
