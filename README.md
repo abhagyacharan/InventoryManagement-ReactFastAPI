@@ -108,6 +108,11 @@ The Inventory Management System manages products and their associated suppliers,
 - Implement user authentication and authorization.
 - Add more detailed logging and error handling.
 - Improve the UI/UX of the frontend application.
+
 ---
 
-
+## Bugs and Fixes
+If you encounter any bugs or have suggestions for improvements, please feel free to reach out at:
+- [Email](https://a.bhagyacharan@gmail.com)
+- [X/Twitter](https://x.com/abhagyacharan)
+- [LinkedIn](https://linkedin.com/in/abhagyacharan)
