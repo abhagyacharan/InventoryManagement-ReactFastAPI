@@ -8,9 +8,20 @@ The Inventory Management System manages products and their associated suppliers,
 
 ## Images 
 - **Products**
+
 ![Products](https://github.com/user-attachments/assets/b9617fac-9b19-45ee-b7a5-f674d8774f2b)
+
 - **Suppliers**
+
 ![Suppliers](https://github.com/user-attachments/assets/32341ccf-64cc-44ee-a8be-8affe30afff5)
+
+- **Add Product**
+
+![Add Product](https://github.com/user-attachments/assets/6f842320-4cf8-4319-b9af-d041fe2b143f)
+
+- **Sending Email to Suppliers**
+
+![Updating and Email Sending](https://github.com/user-attachments/assets/b93f2af7-8b43-4c6a-9c99-012765b0ad58)
 
 
 ## Backend (FastAPI)
