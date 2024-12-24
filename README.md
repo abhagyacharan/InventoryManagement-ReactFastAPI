@@ -1,154 +1,96 @@
 # Inventory Management System Documentation
 
 ## Overview
-This project is a full-stack inventory management application that utilizes:
-- **Backend**: FastAPI
-- **Frontend**: React
-- **Database**: SQLite3
 
-The system manages products and their associated suppliers, including functionalities like adding, updating, retrieving, and deleting records, as well as sending email notifications to suppliers. Below is a structured documentation of the project.
+The Inventory Management System manages products and their associated suppliers, including functionalities like adding, updating, retrieving, and deleting records, as well as sending email notifications to suppliers. Below is a structured documentation of the project.
 
 ---
 
-## Database Models
 
-### Product Model
-- **Fields**:
-  - `id`: Integer, primary key.
-  - `name`: String, maximum 30 characters, mandatory.
-  - `quantity_in_stock`: Integer, defaults to 0.
-  - `quantity_sold`: Integer, defaults to 0.
-  - `unit_price`: Integer, defaults to 0.
-  - `revenue`: Integer, defaults to 0.
-  - `supplied_by`: Foreign key referencing the `Supplier` model.
+## Backend (FastAPI)
+- **Framework**: FastAPI
+- **Database**: SQLite
+- **ORM**: Tortoise-ORM
+- **Environment Variables**: Stored in `.env` file
 
-### Supplier Model
-- **Fields**:
-  - `id`: Integer, primary key.
-  - `name`: String, maximum 30 characters.
-  - `company`: String, maximum 30 characters.
-  - `email`: String, maximum 100 characters.
-  - `phone`: String, maximum 15 characters.
+### Key Files
+- `app.py`: Main application file containing API endpoints.
+- `models.py`: Database models for `Product` and `Supplier`.
+- `requirements.txt`: Python dependencies.
 
----
+### API Endpoints
+- **Supplier Endpoints**
+  - `POST /supplier`: Add a new supplier.
+  - `GET /supplier`: Retrieve all suppliers.
+  - `GET /supplier/{supplier_id}`: Retrieve a specific supplier by ID.
+  - `PUT /supplier/{supplier_id}`: Update supplier details.
+  - `DELETE /supplier/{supplier_id}`: Delete a supplier by ID.
 
-## Backend Endpoints
+- **Product Endpoints**
+  - `POST /product/{supplier_id}`: Add a new product associated with a supplier.
+  - `GET /product`: Retrieve all products.
+  - `GET /product/{id}`: Retrieve a specific product by ID.
+  - `PUT /product/{id}`: Update product details.
+  - `DELETE /product/{id}`: Delete a product by ID.
 
-### Supplier Endpoints
-1. **Add Supplier** (`POST /supplier`)
-   - **Description**: Adds a new supplier.
-   - **Input**: Supplier details (name, company, email, phone).
-   - **Output**: Supplier data.
+- **Email Notification Endpoint**
+  - `POST /email/{product_id}`: Send an email to the supplier of a specific product.
 
-2. **Retrieve All Suppliers** (`GET /supplier`)
-   - **Description**: Retrieves all suppliers.
-   - **Output**: List of all supplier records.
+## Frontend (React)
+- **Framework**: React
+- **State Management**: React Context API
+- **HTTP Client**: Fetch API
 
-3. **Retrieve Specific Supplier** (`GET /supplier/{supplier_id}`)
-   - **Description**: Retrieves details of a specific supplier by ID.
-   - **Input**: Supplier ID.
-   - **Output**: Supplier details.
+### Key Files
+- `App.js`: Main application component with routing.
+- `ProductContext.js`: Context for managing product state.
+- `SupplierContext.js`: Context for managing supplier state.
+- `components/`: Directory containing React components.
 
-4. **Update Supplier** (`PUT /supplier/{supplier_id}`)
-   - **Description**: Updates supplier details.
-   - **Input**: Supplier ID and updated information.
-   - **Output**: Updated supplier data.
-
-5. **Delete Supplier** (`DELETE /supplier/{supplier_id}`)
-   - **Description**: Deletes a supplier record by ID.
-   - **Input**: Supplier ID.
-
-### Product Endpoints
-1. **Add Product** (`POST /product/{supplier_id}`)
-   - **Description**: Adds a new product associated with a supplier.
-   - **Input**: Supplier ID and product details (name, quantity, unit price, etc.).
-   - **Output**: Product data.
-
-2. **Retrieve All Products** (`GET /product`)
-   - **Description**: Retrieves all products.
-   - **Output**: List of all product records.
-
-3. **Retrieve Specific Product** (`GET /product/{id}`)
-   - **Description**: Retrieves details of a specific product by ID.
-   - **Input**: Product ID.
-   - **Output**: Product details.
-
-4. **Update Product** (`PUT /product/{id}`)
-   - **Description**: Updates product details.
-   - **Input**: Product ID and updated information.
-   - **Output**: Updated product data.
-
-5. **Delete Product** (`DELETE /product/{id}`)
-   - **Description**: Deletes a product record by ID.
-   - **Input**: Product ID.
-
-### Email Notification Endpoint
-1. **Send Email to Supplier** (`POST /email/{product_id}`)
-   - **Description**: Sends an email to the supplier of a specific product.
-   - **Input**: Product ID, email content (message and subject).
-   - **Output**: Status of email delivery.
-
----
-
-## Additional Functionalities
-
-### Email Notifications
-- **Purpose**: Notify suppliers about specific products or updates.
-- **Library Used**: `fastapi-mail`
-- **Email Configuration**:
-  - SMTP Server: Gmail (`smtp.gmail.com`)
-  - Port: 465
-  - Authentication: Enabled (credentials loaded from `.env` file).
-
-### Pydantic Models
-- **Purpose**: Schema validation and serialization of data.
-- **Models Created**:
-  - `product_pydantic`
-  - `product_pydanticIn`
-  - `supplier_pydantic`
-  - `supplier_pydanticIn`
-
-### Environment Variables
-- **Stored in**: `.env`
-- **Keys**:
-  - `EMAIL`: Sender email address.
-  - `PASSWORD`: Sender email password.
-
----
+### Key Components
+- `LandingPage.js`: Displays the landing page.
+- `ProductsTable.js`: Displays a table of products.
+- `SuppliersTable.js`: Displays a table of suppliers.
+- `AddProducts.js`: Form to add a new product.
+- `AddSuppliers.js`: Form to add a new supplier.
+- `UpdateProduct.js`: Form to update product details.
+- `UpdateSupplier.js`: Form to update supplier details.
+- `EmailPage.js`: Form to send an email to a supplier.
 
 ## Setup and Deployment
+1. **Backend Setup**
+   - Create a virtual environment and activate it:
+     ```sh
+     python -m venv venv
+     source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+     ```
+   - Install dependencies:
+     ```sh
+     pip install -r api/requirements.txt
+     ```
+   - Run the FastAPI server:
+     ```sh
+     uvicorn api.app:app --reload
+     ```
 
-### Backend Setup
-1. Install dependencies:
-   ```bash
-   pip install fastapi tortoise-orm fastapi-mail pydantic python-dotenv
-   ```
-2. Initialize database:
-   - SQLite database (`database.sqlite3`) is automatically initialized using Tortoise ORM.
-
-### Run the Application
-- Start the server:
-  ```bash
-  uvicorn app:app --reload
-  ```
-- API documentation available at `/docs`.
-
-### Deployment
-- Ensure the `.env` file is properly configured with email credentials.
-- Use a production-ready web server for deployment (e.g., Gunicorn, Uvicorn with ASGI server).
-
----
+2. **Frontend Setup**
+   - Navigate to the [frontend](http://_vscodecontentref_/23) directory:
+     ```sh
+     cd frontend
+     ```
+   - Install dependencies:
+     ```sh
+     npm install
+     ```
+   - Start the React development server:
+     ```sh
+     npm start
+     ```
 
 ## Future Enhancements
-1. Integrate frontend with the backend.
-2. Add authentication and authorization.
-3. Implement advanced analytics and reporting for inventory.
-4. Optimize database performance for large-scale operations.
-5. Automate email scheduling for regular notifications.
-
+- Implement user authentication and authorization.
+- Add more detailed logging and error handling.
+- Improve the UI/UX of the frontend application.
 ---
 
-## Notes
-- The project is in the development stage. Frontend integration and additional features are planned for future iterations.
-- All database schemas and endpoints are tested and functional.
 
