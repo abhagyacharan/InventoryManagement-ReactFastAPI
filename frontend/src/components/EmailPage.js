@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Form, Button, Card } from 'react-bootstrap';
 import { EmailContext } from '../EmailContext';
 
@@ -168,7 +168,7 @@ const EmailPage = () => {
                         <Form.Group controlId='email'>
                             <Form.Label>Email</Form.Label>
                             <Form.Control
-                                type='email'
+                                type='text'
                                 name='email'
                                 value={emailDetails.email}
                                 onChange={updateForm}
@@ -179,7 +179,7 @@ const EmailPage = () => {
                         <Form.Group controlId='phone'>
                             <Form.Label>Phone Number</Form.Label>
                             <Form.Control
-                                type='number'
+                                type='text'
                                 name='phone'
                                 value={emailDetails.phone}
                                 onChange={updateForm}
@@ -201,7 +201,7 @@ const EmailPage = () => {
                         <Form.Group controlId='emailTitle'>
                             <Form.Label>Email Title</Form.Label>
                             <Form.Control
-                                type='Text'
+                                type='text'
                                 name='emailTitle'
                                 value={emailDetails.emailTitle}
                                 onChange={updateForm}
