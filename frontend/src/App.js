@@ -1,6 +1,7 @@
 import React from "react";
 import NavBar from './components/NavBar'
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
+import LandingPage from "./components/LandingPage";
 import { ProductProvider } from "./ProductContext";
 import { SupplierProvider } from "./SupplierContext";
 import ProductsTable from "./components/ProductsTable";
@@ -25,7 +26,9 @@ function App() {
                 <UpdateProductContextProvider>
                   <EmailContextProvider>
                     <Routes>
-                      <Route exact path="/" Component={ProductsAndSuppliersTable} />
+                      <Route exact path="/" Component={LandingPage} />
+                      <Route exact path="/products" Component={ProductsTable} />
+                      <Route exact path="/suppliers" Component={SuppliersTable} />
                       <Route exact path="/addproduct" Component={AddProducts} />
                       <Route exact path="/addsupplier" Component={AddSuppliers} />
                       <Route exact path="/updateproduct" Component={UpdateProduct} />

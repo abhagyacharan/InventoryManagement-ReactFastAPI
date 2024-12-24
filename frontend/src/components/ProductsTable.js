@@ -104,7 +104,7 @@ const ProductsAndSuppliersTable = () => {
                 </Table>
             </div>
 
-            <hr style={{ height: "3px", backgroundColor: "#7a7a7a", border: "none" }} />
+            {/* <hr style={{ height: "3px", backgroundColor: "#7a7a7a", border: "none" }} />
 
             <div>
                 <h3 className="text-center mb-3" style={{ textDecoration: "underline" }}>Suppliers</h3>
@@ -129,7 +129,7 @@ const ProductsAndSuppliersTable = () => {
                         ))}
                     </tbody>
                 </Table>
-            </div>
+            </div> */}
         </>
     );
 };
