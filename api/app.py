@@ -119,7 +119,7 @@ async def delete_product(id: int):
     await Product.filter(id = id).delete()
     return {"status" : "ok"}
 
-
+#Email Schema
 
 class EmailSchema(BaseModel):
     email: List[EmailStr]
