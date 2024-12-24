@@ -48,7 +48,6 @@ The Inventory Management System manages products and their associated suppliers,
 - `components/`: Directory containing React components.
 
 ### Key Components
-- `LandingPage.js`: Displays the landing page.
 - `ProductsTable.js`: Displays a table of products.
 - `SuppliersTable.js`: Displays a table of suppliers.
 - `AddProducts.js`: Form to add a new product.
