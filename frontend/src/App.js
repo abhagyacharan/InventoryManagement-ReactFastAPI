@@ -22,20 +22,20 @@ function App() {
           <SupplierProvider>
             <NavBar />
             <div className="row">
-              <div className="col-sm-10 col-xm-12 mr-auto ml-auto mt-4 mb-4">
-                <UpdateProductContextProvider>
-                  <EmailContextProvider>
-                    <Routes>
-                      <Route exact path="/" Component={LandingPage} />
-                      <Route exact path="/products" Component={ProductsTable} />
-                      <Route exact path="/suppliers" Component={SuppliersTable} />
-                      <Route exact path="/addproduct" Component={AddProducts} />
-                      <Route exact path="/addsupplier" Component={AddSuppliers} />
-                      <Route exact path="/updateproduct" Component={UpdateProduct} />
-                      <Route exact path="/email" Component={EmailPage} />
-                    </Routes>
-                  </EmailContextProvider>
-                </UpdateProductContextProvider>
+            <div className="col-sm-10 col-xm-12 mr-auto ml-auto mt-4 mb-4">
+                  <UpdateProductContextProvider>
+                    <EmailContextProvider>
+                      <Routes>
+                        <Route exact path="/" Component={LandingPage} />
+                        <Route exact path="/products" Component={ProductsTable} />
+                        <Route exact path="/suppliers" Component={SuppliersTable} />
+                        <Route exact path="/addproduct" Component={AddProducts} />
+                        <Route exact path="/addsupplier" Component={AddSuppliers} />
+                        <Route exact path="/updateproduct" Component={UpdateProduct} />
+                        <Route exact path="/email" Component={EmailPage} />
+                      </Routes>
+                    </EmailContextProvider>
+                  </UpdateProductContextProvider>
               </div>
             </div>
           </SupplierProvider>

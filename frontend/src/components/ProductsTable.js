@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, } from "react";
+import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Table } from "react-bootstrap";
 import { ProductContext } from "../ProductContext";
@@ -8,6 +8,7 @@ import SuppliersRow from "./SuppliersRow";
 import UpdateProduct from "./UpdateProduct";
 import { UpdateContext } from "../UpdateProductContext";
 import { EmailContext } from "../EmailContext";
+import {Button} from "react-bootstrap";
 
 const ProductsAndSuppliersTable = () => {
     const [products, setProducts] = useContext(ProductContext);
@@ -76,7 +77,7 @@ const ProductsAndSuppliersTable = () => {
 
     return (
         <>
-            <div>
+            <div className="d-flex flex-column">
                 <h3 className="text-center mb-3" style={{ textDecoration: "underline" }}>Products</h3>
                 <Table striped bordered hover>
                     <thead>
@@ -102,6 +103,7 @@ const ProductsAndSuppliersTable = () => {
                         ))}
                     </tbody>
                 </Table>
+                <Button href="/" className="mt-5 mr-auto ml-auto">Back</Button>
             </div>
 
             {/* <hr style={{ height: "3px", backgroundColor: "#7a7a7a", border: "none" }} />

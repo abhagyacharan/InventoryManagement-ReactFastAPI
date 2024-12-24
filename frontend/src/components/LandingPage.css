@@ -1,19 +1,4 @@
-/* styles.css */
-.landing-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f9f9f9;
-  }
-  
-  .button-container {
-    display: flex;
-    gap: 20px;
-  }
-  
-  button {
-    padding: 10px 20px;
-    font-size: 16px;
-  }
-  
+.or-text {
+    font-size: 30px; /* Adjust the size as needed */
+    font-weight: bold; /* Optional: Make the text bold */
+}

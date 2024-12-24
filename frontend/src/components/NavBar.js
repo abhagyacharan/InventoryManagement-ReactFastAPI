@@ -57,12 +57,17 @@ const NavBar = () => {
         if (location.pathname === "/") {
             return (
                 <div className="ml-auto d-flex align-items-center">
-                    <Badge className="mt-2 mr-2" variant="primary">Products in Stock: {products.data.length}</Badge>
-                    <Badge className="mt-2" variant="primary">Suppliers: {suppliers.data.length}</Badge>
+                    {/* Increased badge size */}
+                    <Badge className="mr-2" variant="primary" style={{ fontSize: '18px', padding: '10px 20px' }}>
+                        Products in Stock: {products.data.length}
+                    </Badge>
+                    <Badge variant="primary" style={{ fontSize: '18px', padding: '10px 20px' }}>
+                        Suppliers: {suppliers.data.length}
+                    </Badge>
                 </div>
             );
         }
-        return null; // No badges for other routes
+        return null;
     };
 
     return (

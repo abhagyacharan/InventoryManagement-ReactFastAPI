@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Table } from "react-bootstrap";
 import { SupplierContext } from "../SupplierContext";
 import SuppliersRow from "./SuppliersRow";
+import {Button} from "react-bootstrap";
 
 const SuppliersTable = () => {
     const [suppliers, setSuppliers] = useContext(SupplierContext);
@@ -42,7 +43,8 @@ const SuppliersTable = () => {
     }, []);
 
     return (
-        <div>
+        <div className="d-flex flex-column">
+            <h3 className="text-center mb-3" style={{ textDecoration: "underline" }}>Suppliers</h3>
             <Table striped bordered hover>
                 <thead>
                     <tr>
@@ -68,6 +70,7 @@ const SuppliersTable = () => {
                     ))}
                 </tbody>
             </Table>
+            <Button href="/" className="mt-5 mr-auto ml-auto">Back</Button>
         </div>
     )
 }
