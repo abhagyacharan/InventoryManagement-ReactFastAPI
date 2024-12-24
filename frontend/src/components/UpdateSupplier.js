@@ -109,8 +109,7 @@ const UpdateSupplier = () => {
         <div className="d-flex justify-content-center mt-3">
                 <Button href="/" variant="primary">Back</Button>
             </div>
-        </>
-        
+        </>        
     )
 }
 

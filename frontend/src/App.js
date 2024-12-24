@@ -1,11 +1,8 @@
-import React, { act, useState } from "react";
+import React, { useState } from "react";
 import NavBar from './components/NavBar'
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
-import LandingPage from "./components/LandingPage";
 import { ProductProvider } from "./ProductContext";
 import { SupplierProvider } from "./SupplierContext";
-import ProductsTable from "./components/ProductsTable";
-import SuppliersTable from "./components/SuppliersTable";
 import ProductsAndSuppliersTable from "./components/ProductsTable";
 import AddProducts from "./components/AddProducts";
 import AddSuppliers from "./components/AddSuppliers";
