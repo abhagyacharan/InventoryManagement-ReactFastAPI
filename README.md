@@ -6,6 +6,12 @@ The Inventory Management System manages products and their associated suppliers,
 
 ---
 
+## Images 
+- **Products**
+![Products](https://github.com/user-attachments/assets/b9617fac-9b19-45ee-b7a5-f674d8774f2b)
+- **Suppliers**
+![Suppliers](https://github.com/user-attachments/assets/32341ccf-64cc-44ee-a8be-8affe30afff5)
+
 
 ## Backend (FastAPI)
 - **Framework**: FastAPI
@@ -37,8 +43,9 @@ The Inventory Management System manages products and their associated suppliers,
   - `POST /email/{product_id}`: Send an email to the supplier of a specific product.
 
 ## Frontend (React)
-- **Framework**: React
+- **Frameworks**: React, Bootstrap
 - **State Management**: React Context API
+- **HTTP Client**: Fetch API
 - **HTTP Client**: Fetch API
 
 ### Key Files
