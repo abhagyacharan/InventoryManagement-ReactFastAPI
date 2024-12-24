@@ -40,12 +40,12 @@ const EmailPage = () => {
             }
         });
         setEmailDetails({
-            name: '',
-            email: '',
-            phone: '',
-            company: '',
-            emailTitle: '',
-            emailContent: ''
+            name: "",
+            email: "",
+            phone: "",
+            company: "",
+            emailTitle: "",
+            emailContent: ""
         });
     };
 
@@ -95,13 +95,13 @@ const EmailPage = () => {
                 (result) => {
                     if (result.status === 'ok') {
                         setEmailDetails({
-                            name: '',
-                            email: '',
-                            phone: '',
-                            company: '',
-                            emailTitle: '',
-                            emailContent: '',
-                            id: ''
+                            name: "",
+                            email: "",
+                            phone: "",
+                            company: "",
+                            emailTitle: "",
+                            emailContent: "",
+                            id: ""
                         });
                         alert('Supplier deleted successfully');
                     } else {
@@ -240,6 +240,9 @@ const EmailPage = () => {
                     </Form>
                 </Card.Body>
             </Card>
+            <div className="d-flex justify-content-center mt-3">
+                <Button href="/" variant="primary">Back</Button>
+            </div>
         </>
     );
 };

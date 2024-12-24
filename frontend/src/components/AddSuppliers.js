@@ -56,41 +56,46 @@ const AddSuppliers = () => {
         });
     }
     return (
-        <Card>
-            <Card.Body>
-                <Form onSubmit={postData}>
-                    <Form.Group controlId="SupplierName">
-                        <Form.Label>Supplier Name</Form.Label>
-                        <Form.Control type="text" name="SupplierName"
-                            value={supplierInfo.SupplierName} onChange={updateForm}
-                            placeholder="Supplier Name" />
-                    </Form.Group>
+        <>
+            <Card>
+                <Card.Body>
+                    <Form onSubmit={postData}>
+                        <Form.Group controlId="SupplierName">
+                            <Form.Label>Supplier Name</Form.Label>
+                            <Form.Control type="text" name="SupplierName"
+                                value={supplierInfo.SupplierName} onChange={updateForm}
+                                placeholder="Supplier Name" />
+                        </Form.Group>
 
-                    <Form.Group controlId="Company">
-                        <Form.Label>Company</Form.Label>
-                        <Form.Control type="text" name="Company"
-                            value={supplierInfo.Company} onChange={updateForm}
-                            placeholder="Company" />
-                    </Form.Group>
+                        <Form.Group controlId="Company">
+                            <Form.Label>Company</Form.Label>
+                            <Form.Control type="text" name="Company"
+                                value={supplierInfo.Company} onChange={updateForm}
+                                placeholder="Company" />
+                        </Form.Group>
 
-                    <Form.Group controlId="Email">
-                        <Form.Label>Email</Form.Label>
-                        <Form.Control type="text" name="Email"
-                            value={supplierInfo.Email} onChange={updateForm}
-                            placeholder="Email" />
-                    </Form.Group>
+                        <Form.Group controlId="Email">
+                            <Form.Label>Email</Form.Label>
+                            <Form.Control type="text" name="Email"
+                                value={supplierInfo.Email} onChange={updateForm}
+                                placeholder="Email" />
+                        </Form.Group>
 
-                    <Form.Group controlId="Phone">
-                        <Form.Label>Phone</Form.Label>
-                        <Form.Control type="number" name="Phone"
-                            value={supplierInfo.Phone} onChange={updateForm}
-                            placeholder="Phone" />
-                    </Form.Group>
+                        <Form.Group controlId="Phone">
+                            <Form.Label>Phone</Form.Label>
+                            <Form.Control type="number" name="Phone"
+                                value={supplierInfo.Phone} onChange={updateForm}
+                                placeholder="Phone" />
+                        </Form.Group>
 
-                    <Button className="mt-4" variant="primary" type="submit">Submit</Button>
-                </Form>
-            </Card.Body>
-        </Card>
+                        <Button className="mt-4" variant="primary" type="submit">Submit</Button>
+                    </Form>
+                </Card.Body>
+            </Card>
+            <div className="d-flex justify-content-center mt-3">
+                <Button href="/" variant="primary">Back</Button>
+            </div>
+        </>
     )
 }
 
